@@ -1,0 +1,20 @@
+kun = {"乾": "111", "兑": "011", "离": "101", "震": "001", "巽": "110", "坎": "010", "艮": "100", "坤": "000"}
+
+reverse_kun = {v: k for k, v in kun.items()}
+
+text = "YQCTF{*****************}"
+
+text = text[6:-1]
+
+binary_text = ''.join(format(ord(c), '010b') for c in text)
+
+encoded_text = ""
+for i in range(0, len(binary_text), 3):
+    try:
+        encoded_text += reverse_kun[binary_text[i:i + 3]]
+    except KeyError:
+        encoded_text += ""
+
+print(encoded_text)
+
+encoded_text = "*****************"

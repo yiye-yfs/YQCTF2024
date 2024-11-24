@@ -1,0 +1,18 @@
+import libnum
+import gmpy2
+
+p = libnum.generate_prime(128)  # 128位的素数
+q = gmpy2.next_prime(p)
+n = p * q
+e = 65537   # 与欧拉函数互质的整数e
+phi_n = (p-1)*(q-1)   # 欧拉函数phi
+d = gmpy2.invert(e, phi_n)   # 计算出e对于phi的模反元素d
+flag = '**********'
+m = libnum.s2n(flag)   # 明文m
+c = pow(m, e, n)   # 密文c
+
+print("n=", n)
+print("c=", c)
+
+# n = 90667850227327385836747229715407043631471607565743749996553157351090562698259
+# c = 56258233928209807806879861202641538076766378015336337164908978561974849095440
